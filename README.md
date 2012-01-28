@@ -34,11 +34,13 @@ placed in:
 For reference, the calculations for the various parts that makes up the require
 path are:
 
- * `<module_root>` - Recurse up the calling file's directories until the
- `package.json` is found. The directory where `package.json` is found is the root.
+ * `<module_root>` - The directory where `package.json` is found is the root.
  * `<platform>` - `process.platform`
  * `<arch>` - `process.arch`
  * `<node_version>` - `parseFloat(process.versions.node)`
+
+ The default "compiled" directory is `compiled` and the default name of every
+ bindings file is `bindings.node`. This is configurable if you'd like.
 
 
 Installation
@@ -54,7 +56,29 @@ $ npm install bindings
 Example
 -------
 
+`require()`ing the proper bindings file for the given platform and architecture
+and node version is as simple as:
+
 ``` js
+var bindings = require('bindings')()
+
+bindings.your_c_function()
+```
+
+You can specify the name of the bindings file if you desire:
+
+``` js
+var bindings = require('bindings')('my_bindings.node')
+```
+
+Or you can pass in an options Object for full configuration:
+
+
+``` js
+var bindings = require('bindings')({
+    bindings: 'my_bindings.node'
+  , compiled: 'builddir'
+})
 ```
 
 
