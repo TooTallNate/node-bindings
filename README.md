@@ -13,7 +13,9 @@ figure out which version of the bindings to load at runtime, and that's where
 This module solves the organizational problem of how to store these bindings files
 with a simple directory convention:
 
-`<module root>/compiled/<platform>/<arch>/<node_version>/bindings.node`
+```
+<module root>/compiled/<platform>/<arch>/<node_version>/bindings.node
+```
 
 
 Installation
