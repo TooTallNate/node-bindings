@@ -14,6 +14,16 @@ var fs = require('fs')
       , arch: process.arch
       , version: parseFloat(process.versions.node).toString()
       , bindings: 'bindings.node'
+      , try: [
+          // Debug files, for development
+          [ 'module_root', 'out', 'Debug', 'bindings' ]
+        , [ 'module_root', 'Debug', 'bindings' ]
+          // Release files, but manually compiled
+        , [ 'module_root', 'out', 'Release', 'bindings' ]
+        , [ 'module_root', 'Release', 'bindings' ]
+          // Production "Release" buildtype binary
+        , [ 'module_root', 'compiled', 'platform', 'arch', 'version', 'bindings' ]
+        ]
     }
 
 /**
@@ -37,11 +47,11 @@ function bindings (opts) {
 
   var tries = []
     , i = 0
-    , l = exports.try.length
+    , l = opts.try.length
     , n
 
   for (; i<l; i++) {
-    n = join.apply(null, exports.try[i].map(function (p) {
+    n = join.apply(null, opts.try[i].map(function (p) {
       return opts[p] || p
     }))
     tries.push(n)
@@ -61,16 +71,6 @@ function bindings (opts) {
 }
 module.exports = exports = bindings;
 
-exports.try = [
-    // Debug files, for development
-    [ 'module_root', 'out', 'Debug', 'bindings' ]
-  , [ 'module_root', 'Debug', 'bindings' ]
-    // Release files, but manually compiled
-  , [ 'module_root', 'out', 'Release', 'bindings' ]
-  , [ 'module_root', 'Release', 'bindings' ]
-    // Production "Release" buildtype binary
-  , [ 'module_root', 'compiled', 'platform', 'arch', 'version', 'bindings' ]
-]
 
 /**
  * Gets the filename of the JavaScript file that invokes this function.
