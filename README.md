@@ -62,6 +62,7 @@ and node version is as simple as:
 ``` js
 var bindings = require('bindings')()
 
+// Use your bindings defined in your C files
 bindings.your_c_function()
 ```
 
