@@ -4,8 +4,8 @@ node-bindings
 
 This is a helper module for authors of native addon node.js modules. In node >=
 0.7.0, it is encouraged to statically precompile your native addons for your
-various supported platforms and architectures, rather than depend on the users to
-do that. This adds an additional burden on the developer since we now have to
+various supported platforms and architectures, rather than depend on your users
+to do that. This adds an additional burden on the developer since we now have to
 compile the bindings ourselves, before publishing the module. We also have to
 figure out which version of the bindings to load at runtime, and that's where
 `node-bindings` comes into play.
@@ -16,6 +16,29 @@ with a simple directory convention:
 ```
 <module root>/compiled/<platform>/<arch>/<node_version>/bindings.node
 ```
+
+So for example, on a 32-bit Windows platform, running node `v0.6.9`, the
+`bindings.node` file should be placed in:
+
+```
+<module root>/compiled/win32/ia32/0.6/bindings.node
+```
+
+On 64-bit Mac OS X, running node `v0.7.1-pre`, then the bindings file should be
+placed in:
+
+```
+<module root>/compiled/darwin/x64/0.7/bindings.node
+```
+
+For reference, the calculations for the various parts that makes up the require
+path are:
+
+ * `<module_root>` - Recurse up the calling file's directories until the
+ `package.json` is found. The directory where `package.json` is found is the root.
+ * `<platform>` - `process.platform`
+ * `<arch>` - `process.arch`
+ * `<node_version>` - `parseFloat(process.versions.node)`
 
 
 Installation
