@@ -2,33 +2,36 @@ node-bindings
 =============
 ### Helper module for loading your native module's bindings in a cross-platform way.
 
-This is a helper module for authors of native addon node.js modules. In node >=
+This is a helper module for authors of Node.js native addon modules. In node >=
 0.7.0, it is encouraged to statically precompile your native addons for your
 various supported platforms and architectures, rather than depend on your users
-to do that. This adds an additional burden on the developer since we now have to
-compile the bindings ourselves, before publishing the module. We also have to
-figure out which version of the bindings to load at runtime, and that's where
-`node-bindings` comes into play.
+to do that. This adds two new burdens on the developer that we now need to
+condider while writing our module:
 
-This module solves the organizational problem of how to store these bindings files
-with a simple directory convention:
+ 1. You now have to compile the bindings yourself, before publishing the module.
+ 2. You now have to figure out which version of the bindings to load at runtime.
+
+`node-bindings` attempts to solve probelm `#2`.
+
+This module solves the organizational problem of how to store these bindings
+files with a simple directory convention:
 
 ```
-<module root>/compiled/<platform>/<arch>/<node_version>/bindings.node
+<module_root>/compiled/<platform>/<arch>/<node_version>/bindings.node
 ```
 
 So for example, on a 32-bit Windows platform, running node `v0.6.9`, the
 `bindings.node` file should be placed in:
 
 ```
-<module root>/compiled/win32/ia32/0.6/bindings.node
+<module_root>/compiled/win32/ia32/0.6/bindings.node
 ```
 
 On 64-bit Mac OS X, running node `v0.7.1-pre`, then the bindings file should be
 placed in:
 
 ```
-<module root>/compiled/darwin/x64/0.7/bindings.node
+<module_root>/compiled/darwin/x64/0.7/bindings.node
 ```
 
 For reference, the calculations for the various parts that makes up the require
@@ -39,8 +42,8 @@ path are:
  * `<arch>` - `process.arch`
  * `<node_version>` - `parseFloat(process.versions.node)`
 
- The default "compiled" directory is `compiled` and the default name of every
- bindings file is `bindings.node`. This is configurable if you'd like.
+The default "compiled" directory is `compiled` and the default name of every
+"bindings" file is `bindings.node`. This is configurable if you'd like.
 
 
 Installation
