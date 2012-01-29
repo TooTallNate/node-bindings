@@ -66,10 +66,12 @@ function bindings (opts) {
     }
   }
 
-  throw new Error('Could not load the bindings file. Tried:\n' +
-      tries.map(function (a) { return '  - ' + a }).join('\n'))
+  var err = new Error('Could not load the bindings file. Tried:\n'
+    + tries.map(function (a) { return '  - ' + a }).join('\n'))
+  err.tries = tries
+  throw err
 }
-module.exports = exports = bindings;
+module.exports = exports = bindings
 
 
 /**
