@@ -85,6 +85,26 @@ var bindings = require('bindings')({
 })
 ```
 
+Nice Error Output
+-----------------
+
+``` js
+node.js:201
+        throw e; // process.nextTick error, or 'error' event on first tick
+              ^
+Error: Could not load the bindings file. Tried:
+ ↳  /Users/nrajlich/node-ffi/out/Debug/ffi_bindings.node
+ ↳  /Users/nrajlich/node-ffi/Debug/ffi_bindings.node
+ ↳  /Users/nrajlich/node-ffi/out/Release/ffi_bindings.node
+ ↳  /Users/nrajlich/node-ffi/Release/ffi_bindings.node
+ ↳  /Users/nrajlich/node-ffi/compiled/0.6/darwin/x64/ffi_bindings.node
+    at bindings (/Users/nrajlich/node-bindings/bindings.js:69:13)
+    at Object.<anonymous> (/Users/nrajlich/node-ffi/lib/ffi.js:3:34)
+    at Module._compile (module.js:444:26)
+    at Object..js (module.js:462:10)
+    at Module.load (module.js:351:31)
+    ...
+```
 
 License
 -------
