@@ -22,7 +22,7 @@ var fs = require('fs')
         , [ 'module_root', 'out', 'Release', 'bindings' ]
         , [ 'module_root', 'Release', 'bindings' ]
           // Production "Release" buildtype binary
-        , [ 'module_root', 'compiled', 'platform', 'arch', 'version', 'bindings' ]
+        , [ 'module_root', 'compiled', 'version', 'platform', 'arch', 'bindings' ]
         ]
     }
 
