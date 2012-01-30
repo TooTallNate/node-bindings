@@ -17,21 +17,21 @@ This module solves the organizational problem of how to store these bindings
 files with a simple directory convention:
 
 ```
-<module_root>/compiled/<platform>/<arch>/<node_version>/bindings.node
+<module_root>/compiled/<node_version>/<platform>/<arch>/bindings.node
 ```
 
 So for example, on a 32-bit Windows platform, running node `v0.6.9`, the
 `bindings.node` file should be placed in:
 
 ```
-<module_root>/compiled/win32/ia32/0.6/bindings.node
+<module_root>/compiled/0.6/win32/ia32/bindings.node
 ```
 
 On 64-bit Mac OS X, running node `v0.7.1-pre`, then the bindings file should be
 placed in:
 
 ```
-<module_root>/compiled/darwin/x64/0.7/bindings.node
+<module_root>/compiled/0.7/darwin/x64/bindings.node
 ```
 
 For reference, the calculations for the various parts that makes up the require
