@@ -8,6 +8,7 @@ var fs = require('fs')
   , join = path.join
   , dirname = path.dirname
   , exists = fs.existsSync || path.existsSync
+  , arrow = process.platform == 'win32' ? '\u2192' : '\u21B3'
   , defaults = {
         compiled: 'compiled'
       , platform: process.platform
@@ -67,7 +68,7 @@ function bindings (opts) {
   }
 
   var err = new Error('Could not load the bindings file. Tried:\n'
-    + tries.map(function (a) { return ' \u21B3  ' + a }).join('\n'))
+    + tries.map(function (a) { return ' ' + arrow + '  ' + a }).join('\n'))
   err.tries = tries
   throw err
 }
