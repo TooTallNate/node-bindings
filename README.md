@@ -88,7 +88,7 @@ var bindings = require('bindings')({
 Nice Error Output
 -----------------
 
-``` js
+```
 node.js:201
         throw e; // process.nextTick error, or 'error' event on first tick
               ^
