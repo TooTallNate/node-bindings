@@ -116,13 +116,19 @@ exports.getRoot = function getRoot (file) {
   var dir = dirname(file)
     , prev
   while (true) {
+    if (dir === '.') {
+      // Avoids an infinite loop in rare cases, like the REPL
+      dir = process.cwd()
+    }
     if (exists(join(dir, 'package.json'))) {
+      // Found the 'package.json', we're done
       return dir
     }
     if (prev === dir) {
       // Got to the top
       throw new Error('Could not find module root given file: ' + file)
     }
+    // Try the parent dir next
     prev = dir
     dir = join(dir, '..')
   }
