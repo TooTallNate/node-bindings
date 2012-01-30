@@ -89,9 +89,6 @@ Nice Error Output
 -----------------
 
 ```
-node.js:201
-        throw e; // process.nextTick error, or 'error' event on first tick
-              ^
 Error: Could not load the bindings file. Tried:
  ↳  /Users/nrajlich/node-ffi/out/Debug/ffi_bindings.node
  ↳  /Users/nrajlich/node-ffi/Debug/ffi_bindings.node
