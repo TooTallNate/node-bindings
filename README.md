@@ -59,8 +59,8 @@ $ npm install bindings
 Example
 -------
 
-`require()`ing the proper bindings file for the given platform and architecture
-and node version is as simple as:
+`require()`ing the proper bindings file for the current node version, platform
+and architecture is as simple as:
 
 ``` js
 var bindings = require('bindings')()
