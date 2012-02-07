@@ -6,7 +6,7 @@ This is a helper module for authors of Node.js native addon modules. In node >=
 0.7.0, it is encouraged to statically precompile your native addons for your
 various supported platforms and architectures, rather than depend on your users
 to do that. This adds two new burdens on the developer that we now need to
-condider while writing our module:
+consider while writing our module:
 
  1. You now have to compile the bindings yourself, before publishing the module.
  2. You now have to figure out which version of the bindings to load at runtime.
@@ -27,7 +27,7 @@ So for example, on a 32-bit Windows platform, running node `v0.6.9`, the
 <module_root>/compiled/0.6/win32/ia32/bindings.node
 ```
 
-On 64-bit Mac OS X, running node `v0.7.1-pre`, then the bindings file should be
+On 64-bit Mac OS X, running node `v0.7.1`, then the bindings file should be
 placed in:
 
 ```
@@ -72,7 +72,7 @@ bindings.your_c_function()
 You can specify the name of the bindings file if you desire:
 
 ``` js
-var bindings = require('bindings')('my_bindings.node')
+var bindings = require('bindings')('my_bindings')
 ```
 
 Or you can pass in an options Object for full configuration:
@@ -80,7 +80,7 @@ Or you can pass in an options Object for full configuration:
 
 ``` js
 var bindings = require('bindings')({
-    bindings: 'my_bindings.node'
+    bindings: 'my_bindings'
   , compiled: 'builddir'
 })
 ```
