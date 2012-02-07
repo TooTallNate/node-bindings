@@ -46,6 +46,11 @@ function bindings (opts) {
   // Get the module root
   opts.module_root = exports.getRoot(exports.getFileName())
 
+  // Ensure the given bindings name ends with .node
+  if (path.extname(opts.bindings) != '.node') {
+    opts.bindings += '.node'
+  }
+
   var tries = []
     , i = 0
     , l = opts.try.length
