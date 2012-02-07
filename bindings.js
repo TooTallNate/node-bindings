@@ -24,6 +24,9 @@ var fs = require('fs')
         , [ 'module_root', 'Release', 'bindings' ]
           // Production "Release" buildtype binary
         , [ 'module_root', 'compiled', 'version', 'platform', 'arch', 'bindings' ]
+          // Legacy from node-waf, node <= 0.4.x
+        , [ 'module_root', 'build', 'Release', 'bindings' ]
+        , [ 'module_root', 'build', 'default', 'bindings' ]
         ]
     }
 

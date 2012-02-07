@@ -5,5 +5,5 @@
 , "author": "Nathan Rajlich <nathan@tootallnate.net> (http://tootallnate.net)"
 , "repository": { "type": "git", "url": "git://github.com/TooTallNate/node-bindings.git" }
 , "main": "./bindings.js"
-, "engines": { "node": ">= 0.6.0" }
+, "engines": { "node": "*" }
 }
