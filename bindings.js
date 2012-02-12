@@ -13,7 +13,7 @@ var fs = require('fs')
         compiled: 'compiled'
       , platform: process.platform
       , arch: process.arch
-      , version: parseFloat(process.versions.node).toString()
+      , version: parseVersion(process.versions.node)
       , bindings: 'bindings.node'
       , try: [
           // Debug files, for development
@@ -142,3 +142,21 @@ exports.getRoot = function getRoot (file) {
     dir = join(dir, '..')
   }
 }
+
+
+/**
+ * Accepts a String like "v0.10.4" and returns a String
+ * containing the major and minor versions ("0.10").
+ */
+
+function parseVersion (str) {
+  var regexp = /^(\d+)\.(\d+)/
+
+  str = String(str)
+  if (str[0] === 'v') {
+    str = str.substring(1)
+  }
+  var m = str.match(regexp)
+  return m ? m[0] : null
+}
+exports.parseVersion = parseVersion
