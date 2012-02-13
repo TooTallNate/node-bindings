@@ -150,13 +150,7 @@ exports.getRoot = function getRoot (file) {
  */
 
 function parseVersion (str) {
-  var regexp = /^(\d+)\.(\d+)/
-
-  str = String(str)
-  if (str[0] === 'v') {
-    str = str.substring(1)
-  }
-  var m = str.match(regexp)
+  var m = String(str).match(/(\d+)\.(\d+)/)
   return m ? m[0] : null
 }
 exports.parseVersion = parseVersion
