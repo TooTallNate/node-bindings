@@ -129,8 +129,8 @@ exports.getRoot = function getRoot (file) {
       // Avoids an infinite loop in rare cases, like the REPL
       dir = process.cwd()
     }
-    if (exists(join(dir, 'package.json'))) {
-      // Found the 'package.json', we're done
+    if (exists(join(dir, 'package.json')) || exists(join(dir, 'node_modules'))) {
+      // Found the 'package.json' file or 'node_modules' dir; we're done
       return dir
     }
     if (prev === dir) {
