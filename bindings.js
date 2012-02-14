@@ -8,7 +8,7 @@ var fs = require('fs')
   , join = path.join
   , dirname = path.dirname
   , exists = fs.existsSync || path.existsSync
-  , arrow = process.platform == 'win32' ? '\u2192' : '\u21B3'
+  , arrow = process.platform == 'win32' ? '-' : '\u21B3'
   , defaults = {
         compiled: 'compiled'
       , platform: process.platform
