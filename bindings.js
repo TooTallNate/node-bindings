@@ -17,10 +17,10 @@ var fs = require('fs')
       , bindings: 'bindings.node'
       , try: [
           // node-waf and gyp_addon
-        , [ 'module_root', 'build', 'Debug', 'bindings' ]
+          [ 'module_root', 'build', 'Debug', 'bindings' ]
         , [ 'module_root', 'build', 'Release', 'bindings' ]
           // Debug files, for development
-          [ 'module_root', 'out', 'Debug', 'bindings' ]   // Remove
+        , [ 'module_root', 'out', 'Debug', 'bindings' ]   // Remove
         , [ 'module_root', 'Debug', 'bindings' ]          // Remove
           // Release files, but manually compiled
         , [ 'module_root', 'out', 'Release', 'bindings' ] // Remove
