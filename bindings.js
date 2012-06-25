@@ -9,7 +9,7 @@ var fs = require('fs')
   , dirname = path.dirname
   , exists = fs.existsSync || path.existsSync
   , defaults = {
-        arrow: ' -> '
+        arrow: process.env.NODE_BINDINGS_ARROW || ' → '
       , compiled: 'compiled'
       , platform: process.platform
       , arch: process.arch
