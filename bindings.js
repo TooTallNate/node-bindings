@@ -16,18 +16,20 @@ var fs = require('fs')
       , version: parseVersion(process.versions.node)
       , bindings: 'bindings.node'
       , try: [
-          // node-waf and gyp_addon
-          [ 'module_root', 'build', 'Debug', 'bindings' ]
+          // node-gyp's linked version in the "build" dir
+          [ 'module_root', 'build', 'bindings' ]
+          // node-waf and gyp_addon (a.k.a node-gyp)
+        , [ 'module_root', 'build', 'Debug', 'bindings' ]
         , [ 'module_root', 'build', 'Release', 'bindings' ]
-          // Debug files, for development
-        , [ 'module_root', 'out', 'Debug', 'bindings' ]   // Remove
-        , [ 'module_root', 'Debug', 'bindings' ]          // Remove
-          // Release files, but manually compiled
-        , [ 'module_root', 'out', 'Release', 'bindings' ] // Remove
-        , [ 'module_root', 'Release', 'bindings' ]        // Remove
+          // Debug files, for development (legacy behavior, remove for node v0.9)
+        , [ 'module_root', 'out', 'Debug', 'bindings' ]
+        , [ 'module_root', 'Debug', 'bindings' ]
+          // Release files, but manually compiled (legacy behavior, remove for node v0.9)
+        , [ 'module_root', 'out', 'Release', 'bindings' ]
+        , [ 'module_root', 'Release', 'bindings' ]
           // Legacy from node-waf, node <= 0.4.x
         , [ 'module_root', 'build', 'default', 'bindings' ]
-          // Production "Release" buildtype binary
+          // Production "Release" buildtype binary (meh...)
         , [ 'module_root', 'compiled', 'version', 'platform', 'arch', 'bindings' ]
         ]
     }
