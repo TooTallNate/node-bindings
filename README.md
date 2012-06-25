@@ -1,6 +1,6 @@
 node-bindings
 =============
-### Helper module for loading your native module's bindings in a cross-platform way.
+### Helper module for loading your native module's bindings
 
 This is a helper module for authors of Node.js native addon modules. In node >=
 0.7.0, it is encouraged to statically precompile your native addons for your
