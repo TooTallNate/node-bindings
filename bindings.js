@@ -13,7 +13,7 @@ var fs = require('fs')
       , compiled: process.env.NODE_BINDINGS_COMPILED_DIR || 'compiled'
       , platform: process.platform
       , arch: process.arch
-      , version: parseVersion(process.versions.node)
+      , version: process.versions.node
       , bindings: 'bindings.node'
       , try: [
           // node-gyp's linked version in the "build" dir
@@ -149,15 +149,3 @@ exports.getRoot = function getRoot (file) {
     dir = join(dir, '..')
   }
 }
-
-
-/**
- * Accepts a String like "v0.10.4" and returns a String
- * containing the major and minor versions ("0.10").
- */
-
-function parseVersion (str) {
-  var m = String(str).match(/(\d+)\.(\d+)/)
-  return m ? m[0] : null
-}
-exports.parseVersion = parseVersion
