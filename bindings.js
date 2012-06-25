@@ -10,7 +10,7 @@ var fs = require('fs')
   , exists = fs.existsSync || path.existsSync
   , defaults = {
         arrow: process.env.NODE_BINDINGS_ARROW || ' → '
-      , compiled: 'compiled'
+      , compiled: process.env.NODE_BINDINGS_COMPILED_DIR || 'compiled'
       , platform: process.platform
       , arch: process.arch
       , version: parseVersion(process.versions.node)
