@@ -46,7 +46,8 @@ Nice Error Output
 -----------------
 
 When the `.node` file could not be loaded, `node-bindings` throws an Error with
-a nice error message telling you exactly what was tried.
+a nice error message telling you exactly what was tried. You can also check the
+`err.tries` Array property.
 
 ```
 Error: Could not load the bindings file. Tried:
