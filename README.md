@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/TooTallNate/node-bindings.png)](http://travis-ci.org/TooTallNate/node-bindings)
 node-bindings
 =============
 ### Helper module for loading your native module's .node file
