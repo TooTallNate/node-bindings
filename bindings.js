@@ -64,6 +64,8 @@ function bindings (opts) {
     , i = 0
     , l = opts.try.length
     , n
+    , b
+    , err
 
   for (; i<l; i++) {
     n = join.apply(null, opts.try[i].map(function (p) {
@@ -71,8 +73,10 @@ function bindings (opts) {
     }))
     tries.push(n)
     try {
-      var b = require(n)
-      b.path = n
+      b = opts.path ? require.resolve(n) : require(n)
+      if (!opts.path) {
+        b.path = n
+      }
       return b
     } catch (e) {
       if (!/not find/i.test(e.message)) {
@@ -81,7 +85,7 @@ function bindings (opts) {
     }
   }
 
-  var err = new Error('Could not load the bindings file. Tried:\n'
+  err = new Error('Could not locate the bindings file. Tried:\n'
     + tries.map(function (a) { return opts.arrow + a }).join('\n'))
   err.tries = tries
   throw err
