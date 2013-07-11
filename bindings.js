@@ -1,3 +1,4 @@
+
 /**
  * Module dependencies.
  */
@@ -32,6 +33,7 @@ var fs = require('fs')
         , [ 'module_root', 'compiled', 'version', 'platform', 'arch', 'bindings' ]
         ]
     }
+
 /**
  * The main `bindings()` function loads the compiled bindings for a given module.
  * It uses V8's Error API to determine the parent filename that this function is
