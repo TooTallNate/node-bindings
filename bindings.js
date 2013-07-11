@@ -100,8 +100,11 @@ module.exports = exports = bindings
 
 exports.getFileName = function getFileName () {
   var origPST = Error.prepareStackTrace
+    , origSTL = Error.stackTraceLimit
     , dummy = {}
     , fileName
+
+  Error.stackTraceLimit = 10
 
   Error.prepareStackTrace = function (e, st) {
     for (var i=0, l=st.length; i<l; i++) {
@@ -118,6 +121,7 @@ exports.getFileName = function getFileName () {
 
   // cleanup
   Error.prepareStackTrace = origPST
+  Error.stackTraceLimit = origSTL
 
   return fileName
 }
