@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -33,7 +32,7 @@ var fs = require('fs')
         , [ 'module_root', 'compiled', 'version', 'platform', 'arch', 'bindings' ]
         ]
     }
-
+Z
 /**
  * The main `bindings()` function loads the compiled bindings for a given module.
  * It uses V8's Error API to determine the parent filename that this function is
@@ -100,8 +99,11 @@ module.exports = exports = bindings
 
 exports.getFileName = function getFileName () {
   var origPST = Error.prepareStackTrace
+    , origSTL = Error.stackTraceLimit
     , dummy = {}
     , fileName
+
+  Error.stackTraceLimit = 10
 
   Error.prepareStackTrace = function (e, st) {
     for (var i=0, l=st.length; i<l; i++) {
@@ -118,6 +120,7 @@ exports.getFileName = function getFileName () {
 
   // cleanup
   Error.prepareStackTrace = origPST
+  Error.stackTraceLimit = origSTL
 
   return fileName
 }
