@@ -48,7 +48,7 @@ function bindings (opts) {
   } else if (!opts) {
     opts = {}
   }
-  opts.__proto__ = defaults
+  opts = Object.assign({}, defaults, opts);
 
   // Get the module root
   if (!opts.module_root) {
