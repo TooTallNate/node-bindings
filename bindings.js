@@ -7,7 +7,8 @@ var fs = require('fs')
   , path = require('path')
   , join = path.join
   , dirname = path.dirname
-  , exists = fs.existsSync || path.existsSync
+  , exists = ((fs.accessSync && function (path) { try { fs.accessSync(path); } catch (e) { return false; } return true; })
+      || fs.existsSync || path.existsSync)
   , defaults = {
         arrow: process.env.NODE_BINDINGS_ARROW || ' → '
       , compiled: process.env.NODE_BINDINGS_COMPILED_DIR || 'compiled'
