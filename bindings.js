@@ -48,7 +48,11 @@ function bindings (opts) {
   } else if (!opts) {
     opts = {}
   }
-  opts.__proto__ = defaults
+  
+  // maps `defaults` onto `opts` object
+  Object.keys(defaults).map(function(i) {
+    if (!(i in opts) opts[i] = defaults[i];
+  });
 
   // Get the module root
   if (!opts.module_root) {
