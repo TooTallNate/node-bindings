@@ -52,7 +52,7 @@ function bindings (opts) {
   
   // maps `defaults` onto `opts` object
   Object.keys(defaults).map(function(i) {
-    if (!(i in opts) opts[i] = defaults[i];
+    if (!(i in opts)) opts[i] = defaults[i];
   });
 
   // Get the module root
