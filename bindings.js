@@ -15,6 +15,7 @@ var fs = require('fs')
       , platform: process.platform
       , arch: process.arch
       , version: process.versions.node
+      , majorVersion: process.versions.node.split('.').splice(0, 2).join('.')
       , bindings: 'bindings.node'
       , try: [
           // node-gyp's linked version in the "build" dir
@@ -32,6 +33,7 @@ var fs = require('fs')
         , [ 'module_root', 'build', 'default', 'bindings' ]
           // Production "Release" buildtype binary (meh...)
         , [ 'module_root', 'compiled', 'version', 'platform', 'arch', 'bindings' ]
+        , [ 'module_root', 'compiled', 'majorVersion', 'platform', 'arch', 'bindings' ]
         ]
     }
 
