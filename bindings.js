@@ -135,6 +135,16 @@ exports.getFileName = function getFileName (calling_file) {
   Error.prepareStackTrace = origPST
   Error.stackTraceLimit = origSTL
 
+  // handle filename that starts with "file://"
+  var fileSchema = "file://";
+  if (fileName.indexOf(fileSchema) === 0) {
+    fileName = fileName.substr(fileSchema.length)
+    // on windows
+    if (fileName.indexOf(":/") == 2) {
+      fileName = fileName.substr(1)
+    }
+  }
+
   return fileName
 }
 
