@@ -32,6 +32,10 @@ var fs = require('fs')
         , [ 'module_root', 'build', 'default', 'bindings' ]
           // Production "Release" buildtype binary (meh...)
         , [ 'module_root', 'compiled', 'version', 'platform', 'arch', 'bindings' ]
+          // node-qbs builds
+        , [ 'module_root', 'addon-build', 'release', 'install-root' ]
+        , [ 'module_root', 'addon-build', 'debug', 'install-root' ]
+        , [ 'module_root', 'addon-build', 'default', 'install-root' ]
         ]
     }
 
