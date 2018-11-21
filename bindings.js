@@ -65,6 +65,9 @@ function bindings (opts) {
     opts.bindings += '.node'
   }
 
+  // https://github.com/webpack/webpack/issues/4175#issuecomment-342931035
+  var requireFunc = typeof __webpack_require__ === 'function' ? __non_webpack_require__ : require
+
   var tries = []
     , i = 0
     , l = opts.try.length
@@ -78,7 +81,7 @@ function bindings (opts) {
     }))
     tries.push(n)
     try {
-      b = opts.path ? require.resolve(n) : require(n)
+      b = opts.path ? requireFunc.resolve(n) : requireFunc(n)
       if (!opts.path) {
         b.path = n
       }
