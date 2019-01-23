@@ -5,6 +5,7 @@
 
 var fs = require('fs')
   , path = require('path')
+  , fileURLToPath = require('file-uri-to-path')
   , join = path.join
   , dirname = path.dirname
   , exists = ((fs.accessSync && function (path) { try { fs.accessSync(path); } catch (e) { return false; } return true; })
@@ -137,6 +138,12 @@ exports.getFileName = function getFileName (calling_file) {
   // cleanup
   Error.prepareStackTrace = origPST
   Error.stackTraceLimit = origSTL
+
+  // handle filename that starts with "file://"
+  var fileSchema = "file://";
+  if (fileName.indexOf(fileSchema) === 0) {
+    fileName = fileURLToPath(fileName);
+  }
 
   return fileName
 }
