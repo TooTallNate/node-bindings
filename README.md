@@ -1,6 +1,6 @@
 node-bindings
 =============
-### Helper module for loading your native module's .node file
+### Helper module for loading your native module's `.node` file
 
 This is a helper module for authors of Node.js native addon modules.
 It is basically the "swiss army knife" of `require()`ing your native module's
@@ -8,8 +8,8 @@ It is basically the "swiss army knife" of `require()`ing your native module's
 
 Throughout the course of Node's native addon history, addons have ended up being
 compiled in a variety of different places, depending on which build tool and which
-version of node was used. To make matters worse, now the _gyp_ build tool can
-produce either a _Release_ or _Debug_ build, each being built into different
+version of node was used. To make matters worse, now the `gyp` build tool can
+produce either a __Release__ or __Debug__ build, each being built into different
 locations.
 
 This module checks _all_ the possible locations that a native addon would be built
@@ -22,10 +22,10 @@ Installation
 Install with `npm`:
 
 ``` bash
-$ npm install bindings
+$ npm install --save bindings
 ```
 
-Or add it to the `"dependencies"` section of your _package.json_ file.
+Or add it to the `"dependencies"` section of your `package.json` file.
 
 
 Example
@@ -69,7 +69,7 @@ Error: Could not load the bindings file. Tried:
     ...
 ```
 
-The searching for the `.node` file will originate from the first directory in which has a `package.json` file is found. 
+The searching for the `.node` file will originate from the first directory in which has a `package.json` file is found.
 
 License
 -------
