@@ -15,6 +15,7 @@ var fs = require('fs')
       , compiled: process.env.NODE_BINDINGS_COMPILED_DIR || 'compiled'
       , platform: process.platform
       , arch: process.arch
+      , nodePreGyp: 'node-v' + process.versions.modules + '-' + process.platform + '-' + process.arch
       , version: process.versions.node
       , bindings: 'bindings.node'
       , try: [
@@ -37,6 +38,8 @@ var fs = require('fs')
         , [ 'module_root', 'addon-build', 'release', 'install-root', 'bindings' ]
         , [ 'module_root', 'addon-build', 'debug', 'install-root', 'bindings' ]
         , [ 'module_root', 'addon-build', 'default', 'install-root', 'bindings' ]
+          // node-pre-gyp path ./lib/binding/{node_abi}-{platform}-{arch}
+        , [ 'module_root', 'lib', 'binding', 'nodePreGyp', 'bindings' ]
         ]
     }
 
