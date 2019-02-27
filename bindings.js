@@ -115,7 +115,7 @@ function bindings(opts) {
       }
       return b;
     } catch (e) {
-      if (!/not find/i.test(e.message)) {
+      if (e.code !== 'MODULE_NOT_FOUND' && e.code !== 'QUALIFIED_PATH_RESOLUTION_FAILED') {
         throw e;
       }
     }
