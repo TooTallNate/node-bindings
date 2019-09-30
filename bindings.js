@@ -39,6 +39,9 @@ var fs = require('fs'),
       // node-waf and gyp_addon (a.k.a node-gyp)
       ['module_root', 'build', 'Debug', 'bindings'],
       ['module_root', 'build', 'Release', 'bindings'],
+      // cmake-js
+      ['module_root', 'build', 'Debug'],
+      ['module_root', 'build', 'Release'],
       // Debug files, for development (legacy behavior, remove for node v0.9)
       ['module_root', 'out', 'Debug', 'bindings'],
       ['module_root', 'Debug', 'bindings'],
