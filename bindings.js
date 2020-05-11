@@ -79,7 +79,28 @@ function bindings(opts) {
 
   // Get the module root
   if (!opts.module_root) {
-    opts.module_root = exports.getRoot(exports.getFileName());
+    const fileName = exports.getFileName();
+    let module_root = exports.getRoot(fileName);
+
+    // Filename is undefined when eval() was used to execute code with bindings in it. We don't have a valid
+    // module-root in that case and need to use a heuristic to hopefully find the correct directory.
+    if (!fileName) {
+      // Derive module_root from ".node"-filename
+      const possible_package_name = opts.bindings.replace('.node', '');
+      let best_score = -1;
+      let best_match = "";
+      for (const file of fs.readdirSync(join(module_root, 'node_modules'))) {
+          const current_score = compare(file, possible_package_name);
+          if (current_score > best_score) {
+              best_score = current_score;
+              best_match = file;
+          }
+      }
+
+      module_root = join(module_root, 'node_modules', best_match);
+    }
+
+    opts.module_root = module_root;
   }
 
   // Ensure the given bindings name ends with .node
@@ -115,11 +136,9 @@ function bindings(opts) {
       }
       return b;
     } catch (e) {
-      if (
-        e.code !== 'MODULE_NOT_FOUND' &&
-        e.code !== 'QUALIFIED_PATH_RESOLUTION_FAILED' &&
-        !/not find/i.test(e.message)
-      ) {
+      if (e.code !== 'MODULE_NOT_FOUND' &&
+          e.code !== 'QUALIFIED_PATH_RESOLUTION_FAILED' &&
+          !/not find/i.test(e.message)) {
         throw e;
       }
     }
@@ -137,6 +156,21 @@ function bindings(opts) {
   throw err;
 }
 module.exports = exports = bindings;
+
+/**
+ * Returns a similarity score for two strings.
+ * See: https://stackoverflow.com/questions/10473745/compare-strings-javascript-return-of-likely
+ */
+function compare(strA, strB){
+    for(var result = 0, i = strA.length; i--;){
+        if(typeof strB[i] == 'undefined' || strA[i] == strB[i]);
+        else if(strA[i].toLowerCase() == strB[i].toLowerCase())
+            result++;
+        else
+            result += 4;
+    }
+    return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
+}
 
 /**
  * Gets the filename of the JavaScript file that invokes this function.
@@ -174,6 +208,10 @@ exports.getFileName = function getFileName(calling_file) {
   // cleanup
   Error.prepareStackTrace = origPST;
   Error.stackTraceLimit = origSTL;
+
+  if (!fileName) {
+      return "";
+  }
 
   // handle filename that starts with "file://"
   var fileSchema = 'file://';
