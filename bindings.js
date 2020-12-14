@@ -55,7 +55,7 @@ var fs = require('fs'),
       ['module_root', 'addon-build', 'default', 'install-root', 'bindings'],
       // node-pre-gyp path ./lib/binding/{node_abi}-{platform}-{arch}
       ['module_root', 'lib', 'binding', 'nodePreGyp', 'bindings'],
-      // node-ffi build
+      // node-ffi build path
       ['module_root', 'build', 'Release', 'obj.target', 'bindings']
     ]
   };
