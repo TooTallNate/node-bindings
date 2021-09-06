@@ -167,6 +167,9 @@ exports.getFileName = function getFileName(calling_file) {
     }
   };
 
+  // TODO: Remove this debug statement
+  console.log(`Bindings: getFileName() => fileName:${fileName}`);
+
   // run the 'prepareStackTrace' function above
   Error.captureStackTrace(dummy);
   dummy.stack;
