@@ -81,6 +81,11 @@ function bindings(opts) {
   if (!opts.module_root) {
     opts.module_root = exports.getRoot(exports.getFileName());
   }
+  
+  // Add the user defined tries
+  if (opts.userDefinedTries) {
+    opts.try = opts.try.concat(opts.userDefinedTries);
+  }
 
   // Ensure the given bindings name ends with .node
   if (path.extname(opts.bindings) != '.node') {
