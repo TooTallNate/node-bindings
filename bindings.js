@@ -81,6 +81,11 @@ function bindings(opts) {
   if (!opts.module_root) {
     opts.module_root = exports.getRoot(exports.getFileName());
   }
+  
+  // Add the user defined tries
+  if (opts.userDefinedTries) {
+    opts.try = opts.try.concat(opts.userDefinedTries);
+  }
 
   // Ensure the given bindings name ends with .node
   if (path.extname(opts.bindings) != '.node') {
@@ -155,7 +160,7 @@ exports.getFileName = function getFileName(calling_file) {
   Error.prepareStackTrace = function(e, st) {
     for (var i = 0, l = st.length; i < l; i++) {
       fileName = st[i].getFileName();
-      if (fileName !== __filename) {
+      if (fileName !== undefined && fileName !== __filename) {
         if (calling_file) {
           if (fileName !== calling_file) {
             return;
