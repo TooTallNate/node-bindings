@@ -89,7 +89,7 @@ function bindings(opts) {
 
   // https://github.com/webpack/webpack/issues/4175#issuecomment-342931035
   var requireFunc =
-    typeof __webpack_require__ === 'function'
+    typeof __non_webpack_require__ === 'function'
       ? __non_webpack_require__
       : require;
 
